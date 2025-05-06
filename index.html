@@ -7,18 +7,48 @@
 </head>
 <body>
   <div class="container">
-    <h1>My Virtual Pet</h1>
-    <div class="pet-container">
-      <div id="pet">🐶</div>
-      <div class="buttons">
-        <button onclick="feedPet()">🍖 Feed</button>
-        <button onclick="playWithPet()">🎾 Play</button>
-        <button onclick="checkStatus()">📊 Status</button>
+    <h1>Virtual Pet Game</h1>
+
+    <!-- Start Screen -->
+    <div id="start-screen">
+      <h2>Choose Your Pet</h2>
+      <div class="pet-options">
+        <div class="pet-choice" onclick="choosePet('dog', this)">
+          <img src="images/dog-happy.png" alt="Dog">
+          <button>Pick</button>
+        </div>
+        <div class="pet-choice" onclick="choosePet('cat', this)">
+          <img src="images/cat-happy.png" alt="Cat">
+          <button>Pick</button>
+        </div>
+        <div class="pet-choice" onclick="choosePet('rabbit', this)">
+          <img src="images/rabbit-happy.png" alt="Rabbit">
+          <button>Pick</button>
+        </div>
+      </div>
+
+      <div id="name-entry">
+        <input type="text" id="petNameInput" placeholder="Enter your pet's name">
+        <button onclick="startGame()">Start!</button>
       </div>
     </div>
-    <div id="status"></div>
-  </div>
 
-  <script src="script.js"></script>
+    <!-- Main Pet Interface -->
+    <div id="pet-interface" style="display: none;">
+      <h2 id="pet-name-title">Your Pet</h2>
+      <div class="pet-container">
+        <div id="pet">🐶</div>
+        <div class="buttons">
+          <button onclick="feedPet()">🍖 Feed</button>
+          <button onclick="playWithPet()">🎾 Play</button>
+          <button onclick="checkStatus()">📊 Status</button>
+        </div>
+        <button onclick="resetGame()">🔄 Reset Game</button>
+      </div>
+      <div id="status"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
 </body>
 </html>

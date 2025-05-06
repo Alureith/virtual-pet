@@ -1,51 +1,143 @@
 body {
-    font-family: sans-serif;
-    text-align: center;
-    background-color: #fef6e4;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .pet-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #pet {
-    font-size: 100px;
-    margin: 20px 0;
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  button {
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: #ffb703;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #fb8500;
-  }
-  
-  #status {
-    font-size: 18px;
-    margin-top: 10px;
-  }
-  
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #fef6e4;
+  margin: 0;
+  padding: 30px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Start Screen Layout */
+#start-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title */
+#start-screen h2 {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+/* Pet Selection Grid */
+.pet-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin-top: 40px;
+  flex-wrap: nowrap;
+}
+
+/* Each Pet Option */
+.pet-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.pet-choice:hover {
+  transform: scale(1.05);
+}
+
+/* Selected Pet Style */
+.pet-choice.selected {
+  border: 6px solid #219ebc;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Pet Images */
+.pet-choice img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 16px;
+}
+
+/* Pet Selection Buttons */
+.pet-choice button {
+  font-size: 32px;
+  padding: 20px 30px;
+  background-color: #fb8500;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* Name Entry */
+#name-entry {
+  margin-top: 100px;
+}
+
+#name-entry input {
+  padding: 20px;
+  font-size: 32px;
+  border-radius: 14px;
+  border: 2px solid #ccc;
+  margin-right: 15px;
+  width: 400px;
+}
+
+#name-entry button {
+  padding: 20px 30px;
+  font-size: 32px;
+  background-color: #219ebc;
+  color: white;
+  border: none;
+  border-radius: 14px;
+}
+
+/* Main Pet Interface */
+.pet-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#pet {
+  font-size: 200px;
+  margin: 40px 0;
+}
+
+#pet-name-title {
+  font-size: 56px;
+  margin-top: 24px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+button {
+  padding: 20px 30px;
+  font-size: 32px;
+  border: none;
+  border-radius: 14px;
+  background-color: #ffb703;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #fb8500;
+}
+
+#status {
+  font-size: 32px;
+  margin-top: 24px;
+}

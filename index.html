@@ -12,20 +12,22 @@
     <!-- Start Screen -->
     <div id="start-screen">
       <h2>Choose Your Pet</h2>
-      <div class="pet-options">
-        <div class="pet-choice" onclick="choosePet('dog', this)">
-          <img src="images/dog-happy.png" alt="Dog">
-          <button>Pick</button>
-        </div>
-        <div class="pet-choice" onclick="choosePet('cat', this)">
-          <img src="images/cat-happy.png" alt="Cat">
-          <button>Pick</button>
-        </div>
-        <div class="pet-choice" onclick="choosePet('rabbit', this)">
-          <img src="images/rabbit-happy.png" alt="Rabbit">
-          <button>Pick</button>
-        </div>
-      </div>
+      <!-- Inside the pet options grid -->
+<div class="pet-options">
+  <div class="pet-choice" onclick="choosePet('dog', this)">
+    <img src="images/dog-happy.png" alt="Dog">
+    <button>Pick</button>
+  </div>
+  <div class="pet-choice" onclick="choosePet('cat', this)">
+    <img src="images/cat-happy.png" alt="Cat">
+    <button>Pick</button>
+  </div>
+  <div class="pet-choice" onclick="choosePet('penguin', this)">
+    <img src="images/penguin-happy.png" alt="Penguin">
+    <button>Pick</button>
+  </div>
+</div>
+
 
       <div id="name-entry">
         <input type="text" id="petNameInput" placeholder="Enter your pet's name">

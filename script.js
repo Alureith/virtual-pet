@@ -11,7 +11,7 @@ function choosePet(type, element) {
   selectedPet = type;
   localStorage.setItem("selectedPet", selectedPet);
 
-  // Highlight selected card
+  // Highlight selected pet
   const allChoices = document.querySelectorAll(".pet-choice");
   allChoices.forEach(choice => choice.classList.remove("selected"));
   element.classList.add("selected");
@@ -39,7 +39,7 @@ function getPetEmoji(mood) {
   const petEmojis = {
     dog: { happy: "🐶", sad: "😢🐶", neutral: "😐🐶" },
     cat: { happy: "😺", sad: "😿", neutral: "😐🐱" },
-    rabbit: { happy: "🐰", sad: "🥺🐰", neutral: "😐🐰" }
+    penguin: { happy: "🐧", sad: "🥺🐧", neutral: "😐🐧" } // changed from rabbit to penguin
   };
   return petEmojis[selectedPet]?.[mood] || "🐾";
 }

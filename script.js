@@ -1,6 +1,6 @@
 let pet = {
-  hunger: 50,
-  happiness: 50,
+  hunger: 100,
+  happiness: 100,
   lastUpdated: Date.now()
 };
 
@@ -11,7 +11,7 @@ function choosePet(type, element) {
   selectedPet = type;
   localStorage.setItem("selectedPet", selectedPet);
 
-  // Highlight selected pet
+  // Highlight selected
   const allChoices = document.querySelectorAll(".pet-choice");
   allChoices.forEach(choice => choice.classList.remove("selected"));
   element.classList.add("selected");
@@ -28,21 +28,33 @@ function startGame() {
     petName = "Your Pet";
   }
 
+  pet = {
+    hunger: 100,
+    happiness: 100,
+    lastUpdated: Date.now()
+  };
+  savePet();
+
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("pet-interface").style.display = "block";
-  document.getElementById("pet").textContent = getPetEmoji("neutral");
   document.getElementById("pet-name-title").textContent = petName;
-  loadPet();
+  updateMood();
+  updateStatus();
 }
 
-function getPetEmoji(mood) {
-  const petEmojis = {
-    dog: { happy: "🐶", sad: "😢🐶", neutral: "😐🐶" },
-    cat: { happy: "😺", sad: "😿", neutral: "😐🐱" },
-    penguin: { happy: "🐧", sad: "🥺🐧", neutral: "😐🐧" } // changed from rabbit to penguin
-  };
-  return petEmojis[selectedPet]?.[mood] || "🐾";
+function updateMood() {
+  let mood = "neutral";
+
+  if (pet.happiness >= 80 && pet.hunger >= 60) {
+    mood = "happy";
+  } else if (pet.happiness <= 30 || pet.hunger <= 30) {
+    mood = "sad";
+  }
+
+  const petImg = `images/${selectedPet}-${mood}.png`;
+  document.getElementById("pet").innerHTML = `<img src="${petImg}" alt="${selectedPet} ${mood}">`;
 }
+
 
 function decayStats() {
   const now = Date.now();
@@ -57,38 +69,26 @@ function decayStats() {
 
 function feedPet() {
   decayStats();
-  pet.hunger = Math.max(0, pet.hunger - 10);
+  pet.hunger = Math.min(100, pet.hunger + 15); // Gain fullness
   updateMood();
-  updateStatus(`${petName} was fed!`);
+  updateStatus();
   savePet();
 }
+
 
 function playWithPet() {
   decayStats();
-  pet.happiness = Math.min(100, pet.happiness + 10);
+  pet.happiness = Math.min(100, pet.happiness + 10); // Get happier
+  pet.hunger = Math.max(0, pet.hunger - 10);         // Burn calories
   updateMood();
-  updateStatus(`You played with ${petName}!`);
+  updateStatus();
   savePet();
 }
 
-function checkStatus() {
-  decayStats();
-  updateMood();
-  updateStatus(`Hunger: ${pet.hunger} | Happiness: ${pet.happiness}`);
-}
 
-function updateMood() {
-  let mood = "neutral";
-  if (pet.happiness >= 80 && pet.hunger <= 30) {
-    mood = "happy";
-  } else if (pet.happiness <= 30 || pet.hunger >= 80) {
-    mood = "sad";
-  }
-  document.getElementById("pet").textContent = getPetEmoji(mood);
-}
-
-function updateStatus(msg) {
-  document.getElementById("status").innerText = msg;
+function updateStatus() {
+  document.getElementById("status").innerText =
+    `Hunger: ${pet.hunger} | Happiness: ${pet.happiness}`;
 }
 
 function savePet() {
@@ -98,14 +98,18 @@ function savePet() {
 function loadPet() {
   const saved = localStorage.getItem("petStats");
   if (saved) pet = JSON.parse(saved);
-  document.getElementById("pet-name-title").textContent = petName;
   decayStats();
   updateMood();
-  checkStatus();
+  updateStatus();
 }
 
 function resetGame() {
   localStorage.clear();
+  pet = {
+    hunger: 100,
+    happiness: 100,
+    lastUpdated: Date.now()
+  };
   location.reload();
 }
 
@@ -114,7 +118,7 @@ window.onload = () => {
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("pet-interface").style.display = "block";
     document.getElementById("pet-name-title").textContent = petName;
-    document.getElementById("pet").textContent = getPetEmoji("neutral");
+    updateMood();
     loadPet();
   }
 };

@@ -26,7 +26,12 @@ This is a simple and fun web-based virtual pet game created as a final project f
 
 ## 🚀 How to Run
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/your-username/virtual-pet.git
-   cd virtual-pet
+1. Ensure all project files (index.html, style.css, script.js, and images folder) are in the same directory.
+
+2. Open a terminal and navigate to the project folder.
+
+3. Run a local server using Python:
+	python -m http.server
+   
+4. Open a browser and go to: http://localhost:8000
+
